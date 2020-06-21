@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM dzmuh/x11-common:latest
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>"
 
 RUN apt-get update \

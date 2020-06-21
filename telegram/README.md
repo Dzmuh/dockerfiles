@@ -40,3 +40,10 @@ docker run --rm -it --name telegram \
     -v $HOME/Downloads:/home/user/Downloads/ \
     dzmuh/telegram
 ```
+
+## Links
+
+Thanks!:
+
+* [xorilog/telegram - Docker Hub](https://hub.docker.com/r/xorilog/telegram)
+  * [sources](https://github.com/xorilog/docker-telegram)

@@ -3,7 +3,7 @@
 Build:
 
 ``` bash
-docker build --pull --rm -f "./Dockerfile" -t dzmuh/xclock:latest "xclock" "$(pwd)"
+docker build --pull --rm -f "./Dockerfile" -t dzmuh/xclock:latest "$(pwd)"
 ```
 
 Run:

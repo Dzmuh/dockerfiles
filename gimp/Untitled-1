@@ -1,0 +1,8 @@
+docker run --rm -it --name gimp \
+    --hostname=$(hostname) \
+	-v /etc/localtime:/etc/localtime:ro \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=unix$DISPLAY \
+	-v $HOME/Pictures:/home/user/Pictures \
+    -v "/home/$(whoami).Xauthority:/home/user/.Xauthority" \
+	local/gimp

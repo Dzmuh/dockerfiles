@@ -74,7 +74,7 @@ docker run --rm -it --name quiterss \
     local/quiterss
 ```
 
-## Links
+## Ссылки
 
 Thanks!:
 

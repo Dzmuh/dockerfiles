@@ -7,3 +7,5 @@ Gollum - вики-движок на базе Git, который можно ра
 ## Ссылки
 
 * [Github](https://github.com/gollum/gollum)
+  * [Gollum via Docker](https://github.com/gollum/gollum/wiki/Gollum-via-Docker)
+* [gollum-gallore](https://github.com/schnatterer/gollum-galore) - практически готовое решение для разворачивания на сервере

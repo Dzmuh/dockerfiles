@@ -21,8 +21,8 @@ docker run --rm -it --name telegram \
     -e DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
+    -v "/home/$(whoami)/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/" \
     -v /etc/localtime:/etc/localtime:ro \
-    -v $HOME/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/ \
     dzmuh/telegram
 ```
 
@@ -35,9 +35,9 @@ docker run --rm -it --name telegram \
     -e DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
+    -v "/home/$(whoami)/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/" \
+    -v "/home/$(whoami)/Downloads:/home/user/Downloads/" \
     -v /etc/localtime:/etc/localtime:ro \
-    -v $HOME/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/ \
-    -v $HOME/Downloads:/home/user/Downloads/ \
     dzmuh/telegram
 ```
 

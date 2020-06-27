@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM dzmuh/ubuntu-base
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>"
 
 RUN apt-get update \

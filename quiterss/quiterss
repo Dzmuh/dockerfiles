@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+CONTAINER_NAME=quiterss
+CONTAINER_NAME_RUNNING="$($(which docker) inspect -f '{{.State.Running}}' $CONTAINER_NAME)"
+
+if [ "$CONTAINER_NAME_RUNNING" != "true" ]; then
+    $(which docker) run --rm -it --name "$CONTAINER_NAME" \
+    --hostname=$(hostname) \
+    --device /dev/snd \
+    -e DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
+    -v "/home/$(whoami)/.config/QuiteRss:/home/user/.config/QuiteRss/" \
+    -v "/home/$(whoami)/.local/share/QuiteRss/:/home/user/.local/share/QuiteRss/" \
+    -v /etc/localtime:/etc/localtime:ro \
+    local/quiterss
+    echo "$CONTAINER_NAME" started
+fi

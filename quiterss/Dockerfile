@@ -1,6 +1,9 @@
 FROM dzmuh/x11-common:latest
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>"
 
+ARG TZ=Europe/Minsk
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
+
 RUN apt-get update \
     && apt-get install -y \
     ca-certificates \

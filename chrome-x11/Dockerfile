@@ -32,6 +32,8 @@ RUN ln --symbolic "${USER_DOWNLOAD_DIR}" Downloads \
 
 VOLUME ["${USER_DOWNLOAD_DIR}", "${USER_DATA_DIR}"]
 
+ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
 WORKDIR "${USER_DOWNLOAD_DIR}"
 ENTRYPOINT ["/entrypoint.sh", "google-chrome"]
-CMD [ "--start-maximized", "--disable-dev-shm-usage", "--no-default-browser-check", "--no-first-run", "--incognito" ]
+##CMD [ "--start-maximized", "--disable-dev-shm-usage", "--no-default-browser-check", "--no-first-run", "--incognito" ]
+CMD [ "--start-maximized", "--disable-dev-shm-usage", "--no-default-browser-check", "--no-first-run" ]

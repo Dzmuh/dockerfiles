@@ -15,6 +15,8 @@ RUN apt-get install --quiet --quiet --no-install-recommends \
     xserver-xorg-video-amdgpu \
     # Nouveau display driver
     xserver-xorg-video-nouveau \
+    # NVIDIA binary Xorg driver
+    xserver-xorg-video-nvidia-440 \
     # Layout and rendering of internationalized text
     libpango1.0 \
     # PulseAudio backend for libcanberra

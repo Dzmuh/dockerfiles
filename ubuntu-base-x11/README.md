@@ -14,4 +14,6 @@ To push a new tag to repository:
 docker push dzmuh/ubuntu-base-x11:latest
 ```
 
-## Полезные ссылки
+## Ссылки
+
+* [dzmuh/ubuntu-base-x11 - Docker Hub](https://hub.docker.com/repository/docker/dzmuh/ubuntu-base-x11)

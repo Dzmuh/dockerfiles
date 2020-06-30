@@ -16,3 +16,9 @@ To push a new tag to repository:
 ``` bash
 docker push dzmuh/chrome-x11:latest
 ```
+
+## Запуск
+
+``` bash
+bash ./chrome
+```

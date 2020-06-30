@@ -2,10 +2,12 @@
 
 Идеи позаимствованы у [xorilog/docker-telegram](https://github.com/xorilog/docker-telegram).
 
+## Сборка
+
 Build:
 
 ``` bash
-docker build --pull --rm -f "./Dockerfile" -t dzmuh/telegram:latest "$(pwd)"
+docker build --pull --rm -f "./Dockerfile" -t local/telegram:latest "$(pwd)"
 ```
 
 ## Запуск
@@ -23,7 +25,7 @@ docker run --rm -it --name telegram \
     -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
     -v "/home/$(whoami)/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/" \
     -v /etc/localtime:/etc/localtime:ro \
-    dzmuh/telegram
+    local/telegram
 ```
 
 Можно прокинуть папку загрузок:
@@ -38,7 +40,7 @@ docker run --rm -it --name telegram \
     -v "/home/$(whoami)/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/" \
     -v "/home/$(whoami)/Downloads:/home/user/Downloads/" \
     -v /etc/localtime:/etc/localtime:ro \
-    dzmuh/telegram
+    local/telegram
 ```
 
 ## Links

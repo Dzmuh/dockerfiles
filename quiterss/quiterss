@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
+#
+# Run QuiteRSS in a Docker container.
+# `set -e` останавливает выполнение script, если в команде или конвейере есть ошибка - что является противоположностью поведения оболочки по умолчанию, которое должно игнорировать ошибки в скриптах.
+# Это не рекомендуемый метод, особенно в сценариях `init.d`.
+set -e
 
 readonly IMAGE_NAME='dzmuh/quiterss'
 readonly CONTAINER_NAME='quiterss'
-CONTAINER_NAME_RUNNING="$($(which docker) inspect -f '{{.State.Running}}' $CONTAINER_NAME)"
+
+# Pull latest Docker image to have the latest version.
+ip r|grep "default\|0.0.0.0" 1>/dev/null && docker pull "${IMAGE_NAME}"
+
+readonly RUNNING_CONTAINER_ID=$(docker ps --quiet --filter "name=${CONTAINER_NAME}")
+[[ "${RUNNING_CONTAINER_ID}" = "" ]] || exit
 
 readonly USER_CONFIG_DIR="${HOME}/.config/QuiteRss"
 if [[ ! -e "${USER_CONFIG_DIR}" ]]; then
@@ -13,6 +23,25 @@ readonly USER_DATA_DIR="${HOME}/.local/share/QuiteRss"
 if [[ ! -e "${USER_DATA_DIR}" ]]; then
     mkdir --parent "${USER_DATA_DIR}"
 fi
+
+# http://patorjk.com/software/taag/#p=display&h=0&f=Calvin%20S&t=QuiteRSS
+cat <<EOH
+
+╔═╗ ┬ ┬┬┌┬┐┌─┐╦═╗╔═╗╔═╗
+║═╬╗│ ││ │ ├┤ ╠╦╝╚═╗╚═╗
+╚═╝╚└─┘┴ ┴ └─┘╩╚═╚═╝╚═╝
+${IMAGE_NAME}
+
+========
+Volumes:
+========
+Config Dir..: '${USER_CONFIG_DIR}'
+Data Dir....: '${USER_DATA_DIR}'
+
+EOH
+
+# removing previous existing containers to enable start up
+docker rm --force --volumes "${CONTAINER_NAME}" >/dev/null 2>&1 || true
 
 readonly CONTAINER_ID=$(docker run \
     --rm \
@@ -34,8 +63,4 @@ readonly CONTAINER_ID=$(docker run \
     --volume "${USER_CONFIG_DIR}":/volume/config \
     --volume "${USER_DATA_DIR}":/volume/data \
     "${IMAGE_NAME}" )
-
-if [ "$CONTAINER_NAME_RUNNING" != "true" ]; then
-    echo "${CONTAINER_ID}"
-    echo "$CONTAINER_NAME" started
-fi
+echo "${CONTAINER_ID}"

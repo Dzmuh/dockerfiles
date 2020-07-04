@@ -4,7 +4,8 @@ LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>"
 # Вывод звука и видео требует членства в группах audio и video для загрузки драйверов и доступа к DRM
 ENV ENTRYPOINT_GROUPS="audio,video"
 
-RUN apt-get install --quiet --quiet --no-install-recommends \
+RUN apt-get update --quiet --quiet \
+ && apt-get install --quiet --quiet --no-install-recommends \
     # Advanced Linux Sound Architecture
     alsa-base \
     dbus-x11 \

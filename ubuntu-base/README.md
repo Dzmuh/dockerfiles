@@ -24,5 +24,8 @@ Build:
 docker build --pull --rm -f "./Dockerfile" -t dzmuh/ubuntu-base:latest "$(pwd)"
 ```
 
-## Полезные ссылки
+To push a new tag to repository:
 
+``` bash
+docker push dzmuh/ubuntu-base:latest
+```

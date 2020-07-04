@@ -29,14 +29,6 @@ RUN mkdir .config \
  && mkdir .local/share \
  && ln --symbolic "${VOL_DATA_DIR}" ".local/share/QuiteRss"
 
-#RUN mkdir .config \
-# && mkdir .config/QuiteRss \
-# && ln --symbolic "${VOL_CONFIG_DIR}" ".config/QuiteRss" \
-# && mkdir .local \
-# && mkdir .local/share \
-# && mkdir# .local/share/QuiteRss \
-# && ln --symbolic "${VOL_DATA_DIR}" ".local/share/QuiteRss"
-
 VOLUME ["${VOL_CONFIG_DIR}", "${VOL_DATA_DIR}"]
 
 ENV QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb

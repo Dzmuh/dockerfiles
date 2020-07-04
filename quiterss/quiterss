@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly IMAGE_NAME='local/quiterss'
+readonly IMAGE_NAME='dzmuh/quiterss'
 readonly CONTAINER_NAME='quiterss'
 CONTAINER_NAME_RUNNING="$($(which docker) inspect -f '{{.State.Running}}' $CONTAINER_NAME)"
 

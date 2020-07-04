@@ -1,66 +1,48 @@
 # QuiteRSS
 
-## Требования
+[QuiteRSS](https://quiterss.org/) on Docker.
 
-- Docker
-- Операционная система Ubuntu
+## Requirements
 
-## Сборка
+* Docker Runtime
+* Ubuntu Operating System
+
+## Get Started
+
+Download run script to have `quiterss` command available:
+
+``` bash
+# Download the run script to provide required Docker run options.
+curl \
+  --fail \
+  --location \
+  --show-error \
+  https://raw.githubusercontent.com/dzmuh/dockerfiles/master/quiterss/quiterss \
+  > /var/tmp/quiterss
+
+# Move the download script and add it to your PATH. This makes it available from command line.
+sudo mv /var/tmp/quiterss /usr/local/bin/
+sudo chmod +x /usr/local/bin/quiterss
+
+# Execute the start script to run QuiteRSS.
+quiterss
+```
+
+## Build and push
 
 Build:
 
 ``` bash
-docker build --pull --rm -f "./Dockerfile" -t local/quiterss:latest "$(pwd)"
+docker build --pull --rm -f "./Dockerfile" -t dzmuh/quiterss:latest "$(pwd)"
 ```
 
-Список пакетов которые будут установлены на базовый образ:
-
-``` txt
-TODO:
-```
-
-## Запуск
-
-Тестовый запуск:
+To push a new tag to repository:
 
 ``` bash
-docker run --rm -it --name quiterss \
-    --hostname=$(hostname) \
-    --device /dev/snd \
-    -e DISPLAY \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
-    -v /etc/localtime:/etc/localtime:ro \
-    local/quiterss
+docker push dzmuh/quiterss:latest
 ```
 
-### Запуск с сохранением всех настроек и файлов данных в стандартном расположении
+## Links
 
-Нужно создать стандартные расположения, чтобы их не создала служба Docker со всеми вытекающими последствиями в виде рутованых прав доступа.
-
-``` bash
-mkdir ~/.config/QuiteRss/
-mkdir ~/.local/share/QuiteRss/
-```
-
-Запуск:
-
-``` bash
-docker run --rm -it --name quiterss \
-    --hostname=$(hostname) \
-    --device /dev/snd \
-    -e DISPLAY \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
-    -v "/home/$(whoami)/.config/QuiteRss:/home/user/.config/QuiteRss/" \
-    -v "/home/$(whoami)/.local/share/QuiteRss/:/home/user/.local/share/QuiteRss/" \
-    -v /etc/localtime:/etc/localtime:ro \
-    local/quiterss
-```
-
-## Ссылки
-
-Thanks!:
-
-* [stevenk11/quiterss - Docker Hub](https://hub.docker.com/r/stevenk11/quiterss)
-  * [sources](https://github.com/stevenk11/quiterss)
+* [dzmuh/quiterss - Docker Hub](https://hub.docker.com/r/dzmuh/quiterss)
+* [Github](https://github.com/Dzmuh/dockerfiles/tree/master/quiterss)

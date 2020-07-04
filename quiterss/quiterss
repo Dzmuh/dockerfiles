@@ -1,18 +1,41 @@
 #!/usr/bin/env bash
 
-CONTAINER_NAME=quiterss
+readonly IMAGE_NAME='local/quiterss'
+readonly CONTAINER_NAME='quiterss'
 CONTAINER_NAME_RUNNING="$($(which docker) inspect -f '{{.State.Running}}' $CONTAINER_NAME)"
 
-if [ "$CONTAINER_NAME_RUNNING" != "true" ]; then
-    $(which docker) run --rm -it --name "$CONTAINER_NAME" \
-    --hostname=$(hostname) \
+readonly USER_CONFIG_DIR="${HOME}/.config/QuiteRss"
+if [[ ! -e "${USER_CONFIG_DIR}" ]]; then
+    mkdir --parent "${USER_CONFIG_DIR}"
+fi
+
+readonly USER_DATA_DIR="${HOME}/.local/share/QuiteRss"
+if [[ ! -e "${USER_DATA_DIR}" ]]; then
+    mkdir --parent "${USER_DATA_DIR}"
+fi
+
+readonly CONTAINER_ID=$(docker run \
+    --rm \
+    -it \
+    --name "${CONTAINER_NAME}" \
+    --hostname ${CONTAINER_NAME} \
+    --volume /etc/localtime:/etc/localtime:ro \
+    ` # Audio` \
     --device /dev/snd \
-    -e DISPLAY \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
-    -v "/home/$(whoami)/.config/QuiteRss:/home/user/.config/QuiteRss/" \
-    -v "/home/$(whoami)/.local/share/QuiteRss/:/home/user/.local/share/QuiteRss/" \
-    -v /etc/localtime:/etc/localtime:ro \
-    local/quiterss
+    ` # Video` \
+    --env DISPLAY \
+    --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
+    `# Entrypoint` \
+    --env GIVEN_GROUP="$(id -gn "${USER}")" \
+    --env GIVEN_GROUP_ID="$(id -g "${USER}")" \
+    --env GIVEN_USER="${USER}" \
+    --env GIVEN_USER_ID="${UID}" \
+    `# QuiteRss` \
+    --volume "${USER_CONFIG_DIR}":/volume/config \
+    --volume "${USER_DATA_DIR}":/volume/data \
+    "${IMAGE_NAME}" )
+
+if [ "$CONTAINER_NAME_RUNNING" != "true" ]; then
+    echo "${CONTAINER_ID}"
     echo "$CONTAINER_NAME" started
 fi

@@ -1,4 +1,4 @@
-FROM dzmuh/ubuntu-base
+FROM dzmuh/ubuntu-base:latest
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>"
 
 # Вывод звука и видео требует членства в группах audio и video для загрузки драйверов и доступа к DRM

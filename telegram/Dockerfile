@@ -3,6 +3,7 @@ LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>"
 
 RUN apt-get update \
     && apt-get install -y apt-utils \
+    firefox \
     telegram-desktop \
     --no-install-recommends && \
     apt-get clean && \

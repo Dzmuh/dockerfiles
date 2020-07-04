@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+readonly IMAGE_NAME='local/telegram'
+readonly CONTAINER_NAME='telegram'
+
+CONTAINER_NAME_RUNNING="$($(which docker) inspect -f '{{.State.Running}}' $CONTAINER_NAME)"
+
+if [[ ! -d "/home/$(whoami)/.config/.TelegramDesktop" ]]; then
+    mkdir "/home/$(whoami)/.config/.TelegramDesktop"
+fi
+
+if [ "$CONTAINER_NAME_RUNNING" != "true" ]; then
+    $(which docker) run --rm -it --name "$CONTAINER_NAME" \
+    --hostname=$(hostname) \
+    --device /dev/snd \
+    -e DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "/home/$(whoami)/.Xauthority:/home/user/.Xauthority" \
+    -v "/home/$(whoami)/.config/.TelegramDesktop:/home/user/.local/share/TelegramDesktop/" \
+    -v "/home/$(whoami)/Downloads:/home/user/Downloads/" \
+    -v /etc/localtime:/etc/localtime:ro \
+    "$IMAGE_NAME"
+    echo "$CONTAINER_NAME" started
+else
+    $(which docker) kill --signal=SIGTERM "$CONTAINER_NAME"
+fi

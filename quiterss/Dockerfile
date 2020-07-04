@@ -7,6 +7,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
 RUN apt-get update \
     && apt-get install -y \
     ca-certificates \
+    firefox \
     quiterss \
     --no-install-recommends && \
     apt-get clean && \

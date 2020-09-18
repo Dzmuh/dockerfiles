@@ -1,6 +1,6 @@
-ARG BASE_IMAGE=atlassian/confluence-server:7.4.1-ubuntu
+ARG BASE_IMAGE=atlassian/confluence-server:7.4.4-ubuntu
 FROM $BASE_IMAGE
-LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="7.4.1-ubuntu"
+LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="7.4.4-ubuntu"
 
 # install dependencies for PlantUML plugin
 RUN apt-get update -y && \

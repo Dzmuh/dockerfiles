@@ -2,10 +2,18 @@
 
 Docker image with Atlassian Confluence & graphviz
 
+## Build and push
+
 Build:
 
 ``` bash
 docker build --pull --rm -f "./Dockerfile" -t dzmuh/confluence:latest "$(pwd)"
+```
+
+To push a new tag to repository:
+
+``` bash
+docker push dzmuh/confluence:latest
 ```
 
 ## Запуск

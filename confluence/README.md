@@ -1,6 +1,6 @@
 # Confluence Server
 
-Docker image with Atlassian Confluence & graphviz
+Docker image with Atlassian Confluence, graphviz and latex
 
 ## Build and push
 

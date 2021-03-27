@@ -18,12 +18,15 @@ RUN apt-get update; \
 		imagemagick \
         libgd3 \
 		librsvg2-bin \
+        # Added for PHP 7.4
+        libonig-dev \
         mc \
         php-fpm \
 		# Required for SyntaxHighlighting
 		python3 \
         unzip \
-	;
+	; \
+    rm -rf /var/lib/apt/lists/*
 
 # Install the PHP extensions we need
 RUN apt-get update; \

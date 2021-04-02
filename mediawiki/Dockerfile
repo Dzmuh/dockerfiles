@@ -1,3 +1,14 @@
+FROM ubuntu:20.04 as builder
+# Install requered packages
+RUN set -x; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+    git \
+    ; \
+    rm -rf /var/lib/apt/lists/* \
+    ; \
+    rm -rf /var/cache/apt/archives/* \s
+
 FROM mediawiki:1.35.1
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
 

@@ -21,3 +21,5 @@ docker push dzmuh/mediawiki:latest
   * [MediaWiki Docker Image on Github](https://github.com/wikimedia/mediawiki-docker)
 * [Official PHP Docker Image](https://hub.docker.com/_/php)
   * [PHP Docker Image on Github](https://github.com/docker-library/php)
+* [Official Composer Docker Image](https://hub.docker.com/_/composer)
+  * [Composer Docker Image on Github](https://github.com/composer/docker/)

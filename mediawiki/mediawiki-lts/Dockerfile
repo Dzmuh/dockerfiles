@@ -1,15 +1,22 @@
 FROM mediawiki:1.35.1
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
 
-# Install missung stuff and php extensions
-RUN apt-get update; \
+# Install requered packages and php extensions
+RUN set -x; \
+    apt-get update; \
     apt-get install -y --no-install-recommends \
+    ca-certificates \
+    # TODO: composer
+    git \
     ghostscript \
     imagemagick \
+    libgd3 \
     librsvg2-bin \
     mc \
     # PDF utils
     poppler-utils \
     # Required for SyntaxHighlighting
     python3 \
-    unzip
+    unzip \
+    ; \
+    rm -rf /var/lib/apt/lists/*

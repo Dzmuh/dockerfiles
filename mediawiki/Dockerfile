@@ -19,4 +19,13 @@ RUN set -x; \
     python3 \
     unzip \
     ; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* \
+    ; \
+    rm -rf /var/cache/apt/archives/* \s
+
+RUN curl -Ls https://getcomposer.org/installer -o installer && \
+        php installer --1 && \
+        php composer.phar install --no-dev && \
+        chmod a+x composer.phar && \
+        mv composer.phar /usr/bin/composer && \
+        rm installer

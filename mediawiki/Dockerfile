@@ -1,4 +1,8 @@
 FROM mediawiki:1.35.1 as builder
+
+# Mediawiki Version
+ENV MEDIAWIKI_BRANCH REL1_35
+
 # Install requered packages
 RUN set -x; \
     apt-get update; \
@@ -10,14 +14,18 @@ RUN set -x; \
     ; \
     rm -rf /var/cache/apt/archives/* \s
 
-# https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:TemplateWizard
-RUN git clone --depth 1 -b REL1_35 \
-        https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git \
-        /tmp/extensions/TemplateWizard
-
-RUN git clone --depth 1 -b REL1_35 \
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git \
-        /tmp/extensions/NativeSvgHandler
+        /tmp/extensions/NativeSvgHandler \
+        ; \
+        rm -rf /tmp/extensions/NativeSvgHandler/.git
+
+# https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:TemplateWizard
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git \
+        /tmp/extensions/TemplateWizard \
+        ; \
+        rm -rf /tmp/extensions/TemplateWizard/.git
 
 FROM mediawiki:1.35.1
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
@@ -46,9 +54,10 @@ RUN set -x; \
 
 COPY --from=builder /tmp/extensions /var/www/html/extensions
 
-RUN curl -Ls https://getcomposer.org/installer -o installer && \
-        php installer --1 && \
-        php composer.phar install --no-dev && \
-        chmod a+x composer.phar && \
-        mv composer.phar /usr/bin/composer && \
+# https://www.mediawiki.org/wiki/Composer
+RUN curl -Ls https://getcomposer.org/installer -o installer; \
+        php installer --1; \
+        php composer.phar install --no-dev; \
+        chmod a+x composer.phar; \
+        mv composer.phar /usr/bin/composer; \
         rm installer

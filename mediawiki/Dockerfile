@@ -1,13 +1,23 @@
-FROM ubuntu:20.04 as builder
+FROM mediawiki:1.35.1 as builder
 # Install requered packages
 RUN set -x; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
+    ca-certificates \
     git \
     ; \
     rm -rf /var/lib/apt/lists/* \
     ; \
     rm -rf /var/cache/apt/archives/* \s
+
+# https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:TemplateWizard
+RUN git clone --depth 1 -b REL1_35 \
+        https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git \
+        /tmp/extensions/TemplateWizard
+
+RUN git clone --depth 1 -b REL1_35 \
+        https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git \
+        /tmp/extensions/NativeSvgHandler
 
 FROM mediawiki:1.35.1
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
@@ -33,6 +43,8 @@ RUN set -x; \
     rm -rf /var/lib/apt/lists/* \
     ; \
     rm -rf /var/cache/apt/archives/* \s
+
+COPY --from=builder /tmp/extensions /var/www/html/extensions
 
 RUN curl -Ls https://getcomposer.org/installer -o installer && \
         php installer --1 && \

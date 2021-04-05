@@ -70,6 +70,3 @@ RUN curl -Ls https://getcomposer.org/installer -o installer; \
         chmod a+x composer.phar; \
         mv composer.phar /usr/bin/composer; \
         rm installer
-
-VOLUME /var/www/data
-VOLUME /var/www/html/images

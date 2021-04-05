@@ -16,11 +16,24 @@ docker push dzmuh/mediawiki:latest
 
 ## Run
 
+SQLite & Mediawiki & Install:
+
 ``` bash
 docker run -d -p 80:80 \
 --name mw \
 -v $(pwd)/.data/sqlite:/var/www/data \
 -v $(pwd)/.data/images:/var/www/html/images \
+dzmuh/mediawiki:latest
+```
+
+run:
+
+``` bash
+docker run -d -p 80:80 \
+--name mw \
+-v $(pwd)/.data/sqlite:/var/www/data \
+-v $(pwd)/.data/images:/var/www/html/images \
+-v $(pwd)/LocalSettings.SQLite.php:/var/www/html/LocalSettings.php \
 dzmuh/mediawiki:latest
 ```
 
@@ -31,5 +44,7 @@ dzmuh/mediawiki:latest
   * [MediaWiki Docker Image on Github](https://github.com/wikimedia/mediawiki-docker)
 * [Official PHP Docker Image](https://hub.docker.com/_/php)
   * [PHP Docker Image on Github](https://github.com/docker-library/php)
+* [Official MariaDB Docker Image](https://hub.docker.com/_/mariadb)
+  * [MariaDB Docker Image on Github](https://github.com/MariaDB/mariadb-docker)
 * [Official Composer Docker Image](https://hub.docker.com/_/composer)
   * [Composer Docker Image on Github](https://github.com/composer/docker/)

@@ -14,6 +14,15 @@ To push a new tag to repository:
 docker push dzmuh/mediawiki:latest
 ```
 
+## Run
+
+``` bash
+docker run -d -p 80:80 \
+--name mw \
+-v $(pwd)/.data/mediawiki:/var/www/data \
+dzmuh/mediawiki:latest
+```
+
 ## Links
 
 * [Official Site](https://www.mediawiki.org/wiki/MediaWiki)

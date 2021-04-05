@@ -53,6 +53,7 @@ RUN set -x; \
     rm -rf /var/cache/apt/archives/* \s
 
 COPY --from=builder /tmp/extensions /var/www/html/extensions
+COPY composer.local.json /var/www/html/composer.local.json
 
 # https://www.mediawiki.org/wiki/Composer
 RUN curl -Ls https://getcomposer.org/installer -o installer; \

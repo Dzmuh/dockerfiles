@@ -19,7 +19,8 @@ docker push dzmuh/mediawiki:latest
 ``` bash
 docker run -d -p 80:80 \
 --name mw \
--v $(pwd)/.data/mediawiki:/var/www/data \
+-v $(pwd)/.data/sqlite:/var/www/data \
+-v $(pwd)/.data/images:/var/www/html/images \
 dzmuh/mediawiki:latest
 ```
 

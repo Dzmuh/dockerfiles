@@ -64,6 +64,7 @@ Run:
 
 ``` bash
 docker run -d -p 80:80 \
+--net mediawiki \
 --name mw \
 -v $(pwd)/.data/images:/var/www/html/images \
 -v $(pwd)/LocalSettings.MariaDB.php:/var/www/html/LocalSettings.php \

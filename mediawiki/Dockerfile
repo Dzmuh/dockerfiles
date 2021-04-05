@@ -30,6 +30,9 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
 FROM mediawiki:1.35.1
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
 
+ENV MEDIAWIKI_BRANCH REL1_35 \
+    APACHE_LOG_DIR=/var/log/apache2
+
 # Install requered packages and php extensions
 RUN set -x; \
     apt-get update; \
@@ -52,6 +55,11 @@ RUN set -x; \
     ; \
     rm -rf /var/cache/apt/archives/* \s
 
+# SQLite Directory Setup
+RUN set -eux; \
+    mkdir -p /var/www/data; \
+    chown -R www-data:www-data /var/www/data
+
 COPY --from=builder /tmp/extensions /var/www/html/extensions
 COPY composer.local.json /var/www/html/composer.local.json
 
@@ -62,3 +70,6 @@ RUN curl -Ls https://getcomposer.org/installer -o installer; \
         chmod a+x composer.phar; \
         mv composer.phar /usr/bin/composer; \
         rm installer
+
+VOLUME /var/www/data
+VOLUME /var/www/html/images

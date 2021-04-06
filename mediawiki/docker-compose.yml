@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    db:
+        image: mariadb
+        restart: always
+        ports:
+            - 3306:3306
+        volumes:
+            - ./.data/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: example-password
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+    mediawiki:
+        image: dzmuh/mediawiki
+        build: .
+        ports:
+            - 80:80
+        volumes:
+            - ./.data/mediawiki:/var/www/data:rw
+        environment:
+            MEDIAWIKI_SITE_SERVER: //localhost:80
+            MEDIAWIKI_SITE_NAME:   My Wiki
+            MEDIAWIKI_DB_HOST:     db
+            MEDIAWIKI_DB_PASSWORD: example-password
+            

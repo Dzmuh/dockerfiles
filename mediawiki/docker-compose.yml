@@ -9,7 +9,11 @@ services:
         volumes:
             - ./.data/db:/var/lib/mysql
         environment:
-            MYSQL_ROOT_PASSWORD: example-password
+            MYSQL_ROOT_PASSWORD: example-root-password
+            # MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+            MYSQL_DATABASE: my_mediawiki
+            MYSQL_USER: wikiuser
+            MYSQL_PASSWORD: example-password
     adminer:
         image: adminer
         restart: always

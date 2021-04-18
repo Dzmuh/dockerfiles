@@ -27,6 +27,13 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/TemplateWizard/.git
 
+# https://www.mediawiki.org/wiki/Extension:YouTube
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-YouTube.git \
+        /tmp/extensions/YouTube \
+        ; \
+        rm -rf /tmp/extensions/YouTube/.git
+
 FROM mediawiki:1.35.1
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
 

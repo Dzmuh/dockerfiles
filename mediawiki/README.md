@@ -16,6 +16,11 @@ docker push dzmuh/mediawiki:latest
 
 ## Run
 
+Запуск mediawik.
+
+``` bash
+docker run -p 8488:80 --name "wikitest" -e TZ='Europe/Minsk' -d dzmuh/mediawiki
+```
 ### SQLite & MediaWiki
 
 Install:
@@ -73,7 +78,7 @@ dzmuh/mediawiki:latest
 
 ## Links
 
-* [Official Site](https://www.mediawiki.org/wiki/MediaWiki)
+* [Official MediaWiki Site](https://www.mediawiki.org/wiki/MediaWiki)
 * [Official MediaWiki Docker Image](https://hub.docker.com/_/mediawiki)
   * [MediaWiki Docker Image on Github](https://github.com/wikimedia/mediawiki-docker)
 * [Official PHP Docker Image](https://hub.docker.com/_/php)

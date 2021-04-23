@@ -27,6 +27,13 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/TemplateWizard/.git
 
+# https://www.mediawiki.org/wiki/Extension:TemplateStyles
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git \
+        /tmp/extensions/TemplateStyles \
+        ; \
+        rm -rf /tmp/extensions/TemplateStyles/.git
+
 # https://www.mediawiki.org/wiki/Extension:YouTube
 RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         https://github.com/wikimedia/mediawiki-extensions-YouTube.git \

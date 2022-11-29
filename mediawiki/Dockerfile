@@ -1,4 +1,4 @@
-FROM mediawiki:1.35.1 as builder
+FROM mediawiki:1.35.8 as builder
 
 # Mediawiki Version
 ENV MEDIAWIKI_BRANCH REL1_35
@@ -41,8 +41,8 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/YouTube/.git
 
-FROM mediawiki:1.35.1
-LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.1-lts"
+FROM mediawiki:1.35.8
+LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.8-lts"
 
 ENV MEDIAWIKI_BRANCH REL1_35 \
     APACHE_LOG_DIR=/var/log/apache2

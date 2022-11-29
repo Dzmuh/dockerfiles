@@ -79,6 +79,7 @@ dzmuh/mediawiki:latest
 
 ## Links
 
+* [dzmuh/mediawiki - Docker Hub](https://hub.docker.com/repository/docker/dzmuh/mediawiki)
 * [Official MediaWiki Site](https://www.mediawiki.org/wiki/MediaWiki)
 * [Official MediaWiki Docker Image](https://hub.docker.com/_/mediawiki)
   * [MediaWiki Docker Image on Github](https://github.com/wikimedia/mediawiki-docker)

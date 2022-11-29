@@ -1,7 +1,7 @@
-FROM mediawiki:1.35.8 as builder
+FROM mediawiki:1.37.6 as builder
 
 # Mediawiki Version
-ENV MEDIAWIKI_BRANCH REL1_35
+ENV MEDIAWIKI_BRANCH REL1_37
 
 # Install requered packages
 RUN set -x; \
@@ -41,10 +41,10 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/YouTube/.git
 
-FROM mediawiki:1.35.8
-LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.35.8-lts"
+FROM mediawiki:1.37.6
+LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.37.6-lts"
 
-ENV MEDIAWIKI_BRANCH REL1_35 \
+ENV MEDIAWIKI_BRANCH REL1_37 \
     APACHE_LOG_DIR=/var/log/apache2
 
 # Install requered packages and php extensions

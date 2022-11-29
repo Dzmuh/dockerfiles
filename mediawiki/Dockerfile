@@ -41,6 +41,14 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/YouTube/.git
 
+# https://www.mediawiki.org/wiki/Extension:Flex_Diagrams
+# https://github.com/wikimedia/mediawiki-extensions-FlexDiagrams
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-FlexDiagrams.git \
+        /tmp/extensions/FlexDiagrams \
+        ; \
+        rm -rf /tmp/extensions/FlexDiagrams/.git
+
 FROM mediawiki:1.37.6
 LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.37.6-lts"
 

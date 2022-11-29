@@ -41,7 +41,7 @@ docker run -d -p 80:80 \
 --name mw \
 -v $(pwd)/.data/sqlite:/var/www/data \
 -v $(pwd)/.data/images:/var/www/html/images \
--v $(pwd)/LocalSettings.SQLite.php:/var/www/html/LocalSettings.php \
+-v $(pwd)/files/LocalSettings.apache.SQLite.php:/var/www/html/LocalSettings.php \
 dzmuh/mediawiki:latest
 ```
 
@@ -73,7 +73,7 @@ docker run -d -p 80:80 \
 --net mediawiki \
 --name mw \
 -v $(pwd)/.data/images:/var/www/html/images \
--v $(pwd)/LocalSettings.MariaDB.php:/var/www/html/LocalSettings.php \
+-v $(pwd)/files/LocalSettings.apache.MariaDB.php:/var/www/html/LocalSettings.php \
 dzmuh/mediawiki:latest
 ```
 

@@ -15,6 +15,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
+## Установите значение в false или удалите совсем строку разворачивая это в проде.
+$wgShowExceptionDetails = true;
 
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
@@ -171,7 +173,8 @@ wfLoadExtension( 'TextExtracts' );
 wfLoadExtension( 'TitleBlacklist' );
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'WikiEditor' );
-
+wfLoadExtension( 'YouTube' );
+wfLoadExtension( 'FlexDiagrams' );
 
 # End of automatically generated settings.
 # Add more configuration options below.

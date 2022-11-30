@@ -22,6 +22,7 @@ $wgShowExceptionDetails = true;
 # $wgDisableOutputCompression = true;
 
 $wgSitename = "WIKI_NAME";
+$wgMetaNamespace = "Проект";
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -204,10 +205,7 @@ wfLoadExtension( 'TextExtracts' );
 wfLoadExtension( 'TitleBlacklist' );
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'WikiEditor' );
-
-## Не системные
-wfLoadExtension( 'NativeSvgHandler' );
-wfLoadExtension( 'TemplateWizard' );
+wfLoadExtension( 'FlexDiagrams' );
 
 # End of automatically generated settings.
 # Add more configuration options below.

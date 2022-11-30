@@ -34,7 +34,7 @@ docker run -d -p 80:80 \
 dzmuh/mediawiki:latest
 ```
 
-Run:
+Run (user: test, password: test23456789):
 
 ``` bash
 docker run -d -p 80:80 \

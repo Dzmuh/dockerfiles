@@ -1,7 +1,7 @@
-FROM mediawiki:1.37.6 as builder
+FROM mediawiki:1.38.4 as builder
 
 # Mediawiki Version
-ENV MEDIAWIKI_BRANCH REL1_37
+ENV MEDIAWIKI_BRANCH REL1_38
 
 # Install requered packages
 RUN set -x; \
@@ -57,10 +57,10 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/FlexDiagrams/.git
 
-FROM mediawiki:1.37.6
-LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.37.6-lts"
+FROM mediawiki:1.38.4
+LABEL maintainer "Ilya Fralkou <ilya-fralkou@outlook.com>" version="1.38.4-lts"
 
-ENV MEDIAWIKI_BRANCH REL1_37 \
+ENV MEDIAWIKI_BRANCH REL1_38 \
     APACHE_LOG_DIR=/var/log/apache2
 
 # Install requered packages and php extensions

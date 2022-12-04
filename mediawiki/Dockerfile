@@ -22,6 +22,14 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         ; \
         rm -rf /tmp/extensions/CharInsert/.git
 
+# https://github.com/wikimedia/mediawiki-extensions-Disambiguator
+# https://www.mediawiki.org/wiki/Extension:Disambiguator
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-Disambiguator.git \
+        /tmp/extensions/Disambiguator \
+        ; \
+        rm -rf /tmp/extensions/Disambiguator/.git
+
 RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git \
         /tmp/extensions/NativeSvgHandler \

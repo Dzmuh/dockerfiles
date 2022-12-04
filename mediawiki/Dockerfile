@@ -14,6 +14,14 @@ RUN set -x; \
     ; \
     rm -rf /var/cache/apt/archives/* \s
 
+# https://github.com/wikimedia/mediawiki-extensions-CharInsert
+# https://www.mediawiki.org/wiki/Extension:CharInsert
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-CharInsert.git \
+        /tmp/extensions/CharInsert \
+        ; \
+        rm -rf /tmp/extensions/CharInsert/.git
+
 RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git \
         /tmp/extensions/NativeSvgHandler \

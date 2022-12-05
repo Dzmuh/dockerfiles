@@ -31,6 +31,12 @@ RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         rm -rf /tmp/extensions/Disambiguator/.git
 
 RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
+        https://github.com/wikimedia/mediawiki-extensions-LabeledSectionTransclusion.git \
+        /tmp/extensions/LabeledSectionTransclusion \
+        ; \
+        rm -rf /tmp/extensions/LabeledSectionTransclusion/.git
+
+RUN git clone --depth 1 --single-branch -b $MEDIAWIKI_BRANCH \
         https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git \
         /tmp/extensions/NativeSvgHandler \
         ; \

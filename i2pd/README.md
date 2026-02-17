@@ -1,5 +1,31 @@
 # i2pd
 
+ docker-compose up -d
+
+ C:\Users\user\AppData\Local\Chromium\Application\chrome.exe --proxy-server="http://127.0.0.1:4444"
+
+## Build and push
+
+Build:
+
+``` bash
+docker build --pull --rm -f "./Dockerfile" -t dzmuh/i2pd:latest "$(pwd)"
+```
+
+To push a new tag to repository:
+
+``` bash
+docker push dzmuh/i2pd:latest
+```
+
+## Run
+
+Запуск i2pd.
+
+``` bash
+docker run -p 7070:7070 --name "i2pdtest" -e TZ='Europe/Minsk' -d dzmuh/i2pd
+```
+
 ## Ссылки
 
 * [Official site](https://i2pd.website/)
@@ -7,7 +33,6 @@
 
 ; Сборка
 
-* <https://github.com/PurpleI2P/i2pd/tree/openssl/build/docker>
 * <https://hub.docker.com/r/purplei2p/i2pd>
 * <https://hub.docker.com/r/meeh/i2pd>
 * <https://hub.docker.com/r/meeh/i2p.i2p>

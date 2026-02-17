@@ -30,7 +30,6 @@ RUN mkdir -p "$I2PD_HOME" "$DATA_DIR" \
     && adduser -S -h "$I2PD_HOME" i2pd \
     && chown -R i2pd:nobody "$I2PD_HOME"
 
-
 # 1. Building binary
 #   Each RUN is a layer, adding the dependencies and building i2pd in one layer takes around 8-900Mb, so to keep the
 #   image under 20mb we need to remove all the build dependencies in the same "RUN" / layer.

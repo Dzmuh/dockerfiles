@@ -1,16 +1,22 @@
 version: '3'
 
+networks:
+  i2pdnet:
+    external: false
+
 services:
     i2pd:
-        image: dzmuh/i2pd
+        image: dzmuh/i2pd:latest
         build: .
         ports:
-            - 7070:7070
-            - 4444:4444
-            - 4447:4447
-            - 7656:7656
-            - 2827:2827
-            - 7654:7654
-            - 7650:7650
-        volumes:
-            - ./.data:/home/i2pd/data:rw
+            - "7070:7070"
+            - "4444:4444"
+            - "4447:4447"
+            - "7656:7656"
+            - "2827:2827"
+            - "7654:7654"
+            - "7650:7650"
+        #volumes:
+        #    - ./.data:/home/i2pd/data:rw
+        networks:
+        - i2pdnet
